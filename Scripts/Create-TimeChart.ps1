@@ -112,7 +112,7 @@ if (-not (test-path $GraphDataBackupDir))  { md $GraphDataBackupDir }
     #Validation check of SUT machines files.
     if (-not (test-path $ServerOut_IP))  
     {
-        echo ("Missing .out data file(s) for System Under Test " + $Name) 
+        echo ("Missing .out data file(s) for System Under Test " + $Name + ". Could not find " + $ServerOut_IP) 
         return $false
     }
 
@@ -189,7 +189,7 @@ if (-not (test-path $GraphDataBackupDir))  { md $GraphDataBackupDir }
         echo $ytics | Out-file $PlotGP_IP -Encoding ascii -Append
         $yrange = "set yrange [" + ($range * -1.0) + ":" + ($range) + "]"
         echo $yrange | Out-file $PlotGP_IP -Encoding ascii -Append
-        echo 'set ytics add ("+100us" 1000) add ("-100us" -1000)' | Out-file $PlotGP_IP -Encoding ascii -Append
+        echo 'set ytics add ("+1000us/1ms" 1000) add ("-1000us/1ms" -1000)' | Out-file $PlotGP_IP -Encoding ascii -Append
 
 
         echo ('plot "' + $ServerPlotGNU_IP + '" using 1:3 title "RTT" with lines, "' + $ServerPlotGNU_IP + '" using 1:2 title "UTC delta" with lines') | Out-File $PlotGP_IP -Append -Encoding ascii
