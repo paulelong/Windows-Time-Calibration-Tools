@@ -150,6 +150,9 @@ if (-not (test-path $GraphDataBackupDir))  { md $GraphDataBackupDir }
 
 
     #Created DIF file between localhost and entry using TimeSampleCorrelcation tool 
+    #Remove file first since we append data.
+    if (test-path $ServerDif_IP)  { del  $ServerDif_IP }
+    if (test-path $ServerPlot_IP)  { del  $ServerPlot_IP }
     DebugPrint("TimeSampleCorrelation DIF: " + $ServerOut_IP +  " " + $localhostfile + "  = " + $ServerDif_IP)
     TimeSampleCorrelation.exe $ServerOut_IP $localhostfile $TSCOffset 0 | MedianFilter.exe 2 60 | MedianFilter.exe 3 60 |
         out-file $ServerDif_IP -Encoding ascii -Append 

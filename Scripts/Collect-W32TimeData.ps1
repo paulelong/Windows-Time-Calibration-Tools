@@ -33,7 +33,7 @@ Param(
    [string]$ReferenceClockSystem,
 
    [Parameter(Mandatory=$False,Position=3)]
-   [string]$Samples = 100
+   [string]$Samples = 300
 )
 
 $SUTData = $SUT + ".out"
